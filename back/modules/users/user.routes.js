@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../users/user.controller');
+const auth = require('../../middleware/auth');
+const permit = require('../../middleware/permit');
 
-router.get('/', userController.getUsers);
+router.get('/', auth, permit('admin'), userController.getUsers);
 
 router.get('/:id', userController.getUser);
 
