@@ -6,12 +6,12 @@ const permit = require('../../middleware/permit');
 
 router.get('/', auth, permit('admin'), userController.getUsers);
 
-router.get('/:id', userController.getUser);
+router.get('/:id', auth, permit('admin'), userController.getUser);
 
-router.post('/', userController.addUser);
+router.post('/', auth, permit('admin'), userController.addUser);
 
-router.put('/:id', userController.editUser);
+router.put('/:id', auth, permit('admin'), userController.editUser);
 
-router.delete('/:id', userController.removeUser);
+router.delete('/:id', auth, permit('admin'), userController.removeUser);
 
 module.exports = router;
