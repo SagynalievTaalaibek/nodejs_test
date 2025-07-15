@@ -36,17 +36,17 @@ const UserSchema = new Schema({
     birthdate: Date,
 });
 
-// Метод для проверки пароля
+// Method to check user password
 UserSchema.methods.checkPassword = function (password) {
     return bcrypt.compare(password, this.password);
 };
 
-// Метод для генерации нового токена
+// Method to generate new token
 UserSchema.methods.generateToken = function () {
     this.token = randomUUID();
 };
 
-// Хук перед сохранением
+// Hash password before saving to DB
 UserSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();
 
@@ -59,7 +59,7 @@ UserSchema.pre('save', async function (next) {
     }
 });
 
-// Удаляем пароль из JSON-ответа
+// Remove password from JSON output
 UserSchema.set('toJSON', {
     transform: function (_doc, ret) {
         delete ret.password;

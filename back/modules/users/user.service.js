@@ -1,6 +1,6 @@
 const User = require('./user.model');
 
-// Создать нового пользователя
+// Create a new user
 const createUser = async ({username, password, first_name, last_name, gender, birthdate}) => {
     const user = new User({
         username,
@@ -13,7 +13,7 @@ const createUser = async ({username, password, first_name, last_name, gender, bi
     return await user.save();
 };
 
-// Получить всех пользователей
+// Get all users with sorting
 const getAllUser = async ({page = 1, limit = 10, sort = 'username', order = 'asc'}) => {
     const skip = (page - 1) * limit;
     const sortOrder = order === 'desc' ? -1 : 1;
@@ -34,10 +34,10 @@ const getAllUser = async ({page = 1, limit = 10, sort = 'username', order = 'asc
     };
 };
 
-// Найти пользователя по ID
+// Find user by ID
 const findByIdUser = async (id) => await User.findById(id);
 
-// Обновить пользователя
+// Update user by ID
 const updateUser = async (id, {
     username,
     password,
@@ -47,7 +47,7 @@ const updateUser = async (id, {
     birthdate
 }) => await User.findByIdAndUpdate(id, {username, password, first_name, last_name, gender, birthdate});
 
-// Удалить пользователя
+// Delete user by ID
 const deleteUser = async (id) => await User.findByIdAndDelete(id);
 
 module.exports = {

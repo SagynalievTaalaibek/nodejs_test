@@ -1,3 +1,5 @@
+// This page renders login form.
+
 export function renderLogin(container) {
     container.innerHTML = `
   <h1 style="

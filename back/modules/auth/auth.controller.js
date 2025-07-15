@@ -3,7 +3,7 @@ const {
     findByToken,
 } = require('../auth/auth.service');
 
-
+// Login with username and password
 const login = async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -14,6 +14,7 @@ const login = async (req, res) => {
     }
 }
 
+// Logout the current user
 const logout = async (req, res) => {
     try {
         const headerValue = req.get('Authorization');
@@ -44,6 +45,7 @@ const logout = async (req, res) => {
     }
 }
 
+// Get current user info
 const me = (req, res) => {
     if (!req.user) {
         return res.status(401).json({ error: 'Not authenticated' });

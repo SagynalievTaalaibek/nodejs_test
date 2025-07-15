@@ -5,6 +5,7 @@ import { renderAdd } from './pages/add.js';
 import { renderEdit } from './pages/edit.js';
 import { renderUser } from './pages/user.js';
 
+// Main router function to render pages based on URL hash.
 export async function router() {
     const app = document.getElementById('app');
     const hash = window.location.hash;
@@ -14,10 +15,11 @@ export async function router() {
         return;
     }
 
-    // Проверка авторизации
+// Checks if user is an admin before allowing access to protected pages.
     const user = await requireAdmin();
     if (!user) return;
 
+// Show login, user list, add, edit, and user detail pages.
     if (hash.startsWith('#/list')) {
         renderList(app);
     } else if (hash.startsWith('#/add')) {

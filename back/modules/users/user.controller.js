@@ -7,6 +7,7 @@ const {
 } = require('../users/user.service');
 const User = require('./user.model');
 
+// Get list users with sorting
 const getUsers = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
@@ -22,6 +23,7 @@ const getUsers = async (req, res) => {
     }
 };
 
+// Get one user by id with full info
 const getUser = async (req, res) => {
     try {
         const user = await findByIdUser(req.params.id);
@@ -32,6 +34,7 @@ const getUser = async (req, res) => {
     }
 };
 
+// Add new user
 const addUser = async (req, res) => {
     try {
         const {username, password, first_name, last_name, gender, birthdate} = req.body;
@@ -53,6 +56,7 @@ const addUser = async (req, res) => {
     }
 };
 
+// Update user by id
 const editUser = async (req, res) => {
     try {
         const {username, password, first_name, last_name, gender, birthdate} = req.body;
@@ -72,6 +76,7 @@ const editUser = async (req, res) => {
     }
 };
 
+// Delete user by id
 const removeUser = async (req, res) => {
     try {
         const user = await deleteUser(req.params.id);

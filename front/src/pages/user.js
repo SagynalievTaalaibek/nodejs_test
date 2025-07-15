@@ -1,3 +1,7 @@
+import './styles.css';
+
+// This file renders the user details page.
+
 export async function renderUser(container) {
     const params = new URLSearchParams(window.location.hash.split('?')[1]);
     const id = params.get('id');
@@ -17,6 +21,7 @@ export async function renderUser(container) {
     const u = await res.json();
 
     container.innerHTML = `
+  <div class="user-details">
     <h1>User Details</h1>
     <p><strong>Username:</strong> ${u.username}</p>
     <p><strong>First Name:</strong> ${u.first_name || ''}</p>
@@ -24,9 +29,12 @@ export async function renderUser(container) {
     <p><strong>Gender:</strong> ${u.gender || ''}</p>
     <p><strong>Birthdate:</strong> ${u.birthdate?.slice(0, 10) || ''}</p>
 
-    <button id="delete-user" style="color: red">Delete</button>
-    <a href="#/list">← Back</a>
-  `;
+    <div class="actions">
+      <button id="delete-user" class="btn-delete">Delete</button>
+      <a href="#/list" class="back-link">← Back</a>
+    </div>
+  </div>
+`;
 
     document.getElementById('delete-user').onclick = async () => {
         const confirmed = confirm('Are you sure you want to delete this user?');

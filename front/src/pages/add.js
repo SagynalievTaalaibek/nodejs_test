@@ -1,18 +1,21 @@
+import './styles.css';
+
+// It renders a form to input user details and handles submitting the data to the server.
 export function renderAdd(container) {
     container.innerHTML = `
     <h1>Add User</h1>
     <form id="add-form">
       <input name="username" placeholder="Username" required />
       <input name="password" type="password" placeholder="Password" required />
-      <input name="first_name" placeholder="First name" />
-      <input name="last_name" placeholder="Last name" />
+      <input name="first_name" placeholder="First name" required />
+      <input name="last_name" placeholder="Last name"  required/>
       <select name="gender">
         <option value="">Gender</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
-      <input name="birthdate" type="date" />
-      <button type="submit">Create</button>
+      <input name="birthdate" type="date" required/>
+      <button type="submit" class="btn-create">Create</button>
     </form>
     <a href="#/list">← Back</a>
   `;

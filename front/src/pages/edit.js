@@ -1,3 +1,8 @@
+import './styles.css';
+
+// It fetches user data by ID, shows a form pre-filled with user details,
+// and handles submitting updates to the server.
+
 export async function renderEdit(container) {
     const params = new URLSearchParams(window.location.hash.split('?')[1]);
     const id = params.get('id');
@@ -29,7 +34,7 @@ export async function renderEdit(container) {
         <option value="female" ${userData.gender === 'female' ? 'selected' : ''}>Female</option>
       </select>
       <input name="birthdate" type="date" value="${userData.birthdate?.slice(0, 10) || ''}" />
-      <button type="submit">Update</button>
+      <button type="submit" class="btn-create">Update</button>
     </form>
     <a href="#/list">← Back</a>
   `;

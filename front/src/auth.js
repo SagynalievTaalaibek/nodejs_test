@@ -1,3 +1,5 @@
+// Check if user is logged in and has 'admin' role.
+
 export async function requireAdmin() {
     const userStr = localStorage.getItem('user');
     if (!userStr) {
@@ -10,8 +12,6 @@ export async function requireAdmin() {
     const res = await fetch('http://localhost:8000/auth/me', {
         headers: { Authorization: `Bearer ${user.token}` },
     });
-
-    console.log(res)
 
     if (!res.ok) {
         localStorage.removeItem('user');

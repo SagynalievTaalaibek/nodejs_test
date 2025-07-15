@@ -1,3 +1,6 @@
+import './styles.css';
+
+// This page renders the user list page with sorting, pagination, and logout functionality.
 export async function renderList(container) {
     const userStr = localStorage.getItem('user');
     const user = userStr ? JSON.parse(userStr) : null;
@@ -85,7 +88,27 @@ export async function renderList(container) {
 `;
 
 
-    document.getElementById('logout').onclick = () => {
+    document.getElementById('logout').onclick = async () => {
+        const confirmed = confirm('Are you sure you want to logout?');
+        if (!confirmed) return;
+
+        try {
+            const res = await fetch('http://localhost:8000/auth', {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
+
+            if (!res.ok) {
+                const err = await res.json();
+                alert(err.error || 'Logout failed');
+                return;
+            }
+        } catch (err) {
+            console.error(err);
+        }
+
         localStorage.removeItem('user');
         location.hash = '#/login';
     };
@@ -120,7 +143,7 @@ export async function renderList(container) {
             }
         );
 
-        const { users, totalPages } = await res.json();
+        const {users, totalPages} = await res.json();
 
         document.getElementById('user-list').innerHTML = `
   <ul style="
