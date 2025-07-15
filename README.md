@@ -57,6 +57,9 @@ npm install
 3. Open in your browser the address that Vite outputs, usually:
 http://localhost:5173
 
+4. To enter the admin panel you need to:
+username: admin
+password: admin
 
 
 
