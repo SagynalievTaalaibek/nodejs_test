@@ -14,7 +14,7 @@ export function renderAdd(container) {
       <input name="birthdate" type="date" />
       <button type="submit">Create</button>
     </form>
-    <a href="#/">← Back</a>
+    <a href="#/list">← Back</a>
   `;
 
     document.getElementById('add-form').addEventListener('submit', async (e) => {
