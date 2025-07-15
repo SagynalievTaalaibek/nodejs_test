@@ -1,9 +1,9 @@
 import { requireAdmin } from './auth.js';
 import { renderList } from './pages/list.js';
 import { renderLogin } from './pages/login.js';
-/*import { renderUser } from './pages/user.js';
 import { renderAdd } from './pages/add.js';
-import { renderEdit } from './pages/edit.js';*/
+/*import { renderEdit } from './pages/edit.js';
+import { renderUser } from './pages/user.js';*/
 
 export async function router() {
     const app = document.getElementById('app');
@@ -14,14 +14,29 @@ export async function router() {
         return;
     }
 
-    // Все остальные маршруты требуют авторизации
+    // Проверка авторизации
     const user = await requireAdmin();
     if (!user) return;
 
     if (hash.startsWith('#/list')) {
         renderList(app);
-    } else (hash.startsWith('#/add'))
-    {
-        renderList(app);
+    } else if (hash.startsWith('#/add')) {
+        renderAdd(app);
+    }
+   /* } else if (hash.startsWith('#/edit')) {
+        renderEdit(app);
+    } else if (hash.startsWith('#/user')) {
+        renderUser(app);
+    }*/ else {
+        app.innerHTML = `
+      <div style="
+        text-align: center;
+        font-family: Arial, sans-serif;
+        padding: 40px;
+      ">
+        <h1>Добро пожаловать!</h1>
+        <p>Выберите действие из меню или перейдите в <a href="#/list">список пользователей</a>.</p>
+      </div>
+    `;
     }
 }
