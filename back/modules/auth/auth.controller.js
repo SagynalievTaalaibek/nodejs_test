@@ -44,7 +44,17 @@ const logout = async (req, res) => {
     }
 }
 
+const me = (req, res) => {
+    if (!req.user) {
+        return res.status(401).json({ error: 'Not authenticated' });
+    }
+
+    const { _id, username, role } = req.user;
+    res.json({ id: _id, username, role });
+};
+
 module.exports = {
     login,
     logout,
+    me,
 };

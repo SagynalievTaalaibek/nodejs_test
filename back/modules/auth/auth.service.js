@@ -25,7 +25,7 @@ const loginUser = async ({username, password}) => {
 }
 
 
-const findByToken = async ({token}) => {
+const findByToken = async (token) => {
     return  User.findOne({ token });
 }
 
