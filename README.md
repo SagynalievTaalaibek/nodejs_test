@@ -33,7 +33,7 @@ npm install
 
 3. Run the command to create users:
 ```bash
-npm run feed
+npm run seed
 ```
 
 4. Start the server:
